@@ -1,0 +1,14 @@
+<div id="alliance">
+    <h1><img src="http://image.eveonline.com/Alliance/99002172_30.png" alt="I Whip my Web Admins Back And Forth"> I Whip My Slaves Back And Forth</h1>
+    <h2>Live kills and losses feed</h2>
+    <h3><span class="text-success">{{addCommas(destroyed)}} ISK Destroyed</span> - <span class="text-danger">{{addCommas(lost)}} ISK Lost</span></h3>
+</div>
+<table class="table" id="killmails">
+    <tr ng-repeat="km in killmails | orderBy:'kill_id' | unique:kill_id | reverse">
+        <td>{{km.kill_time}}</td>
+        <td>{{km.system_name}} - {{km.region}} ({{round(km.security)}})</td>
+        <td><img class="km-ship" src="https://image.eveonline.com/Render/{{km.victim.ship_type_id}}_{{32}}.png" alt="">{{km.victim.ship_name}}</td>
+        <td>{{km.victim.character_name}} / {{km.victim.corporation_name}}</td>
+        <td><a href="http://www.whelp.gg/kill/{{km.kill_id}}" target="_blank" class="btn btn-primary">View</a></td>
+    </tr>
+</table>
