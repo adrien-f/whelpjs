@@ -13,7 +13,7 @@ You will need **node, grunt and bower** at the latest stable version.
 git clone https://github.com/adrien-f/whelpjs.git
 cd whelpjs
 bower install
-nom install 
+npm install 
 grunt serve #this will launch the angular app
 coffee node_app/main.coffee # launch the node application querying the kills
 ```   
