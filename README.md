@@ -3,7 +3,7 @@ whelpjs
 
 Eve-Online live feed of kills and losses of an alliance.
 
-Data provided by raylu/pykill
+Data provided by [raylu/ykill](https://github.com/)
 
 # Getting started
 
@@ -14,7 +14,7 @@ git clone https://github.com/adrien-f/whelpjs.git
 cd whelpjs
 bower install
 npm install 
-grunt serve #this will launch the angular app
+grunt serve # this will launch the angular app
 coffee node_app/main.coffee # launch the node application querying the kills
 ```   
 # TODO
