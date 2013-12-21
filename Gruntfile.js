@@ -25,6 +25,11 @@ module.exports = function (grunt) {
       dist: 'dist'
     },
 
+    whelpjs: {
+        alliance_name: require('./config.json').alliance_name || 'ALLIANCE_NAME',
+        alliance_id: require('./config.json').alliance_id.toString() || '0'
+    },
+
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       coffee: {
@@ -46,6 +51,10 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      replace: {
+        files: ['<%= yeoman.app %>/views/main.html', 'config.json'],
+        tasks: ['replace:watch']
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -53,6 +62,7 @@ module.exports = function (grunt) {
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
+          '.tmp/views/{,*/}*.html',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -173,6 +183,31 @@ module.exports = function (grunt) {
           ext: '.css'
         }]
       }
+    },
+
+    replace: {
+        watch: {
+            src: '<%= yeoman.app %>/views/main.html',
+            dest: '.tmp/views/main.html',
+            replacements: [{
+                from: 'ALLIANCE_NAME',
+                to: '<%= whelpjs.alliance_name %>'
+            }, {
+                from: 'ALLIANCE_ID',
+                to: '<%= whelpjs.alliance_id %>'
+            }]
+        },
+        dist: {
+            src: '<%= yeoman.app %>/views/main.html',
+            dest: '<%= yeoman.dist %>/views/',
+            replacements: [{
+                from: 'ALLIANCE_NAME',
+                to: '<%= whelpjs.alliance_name %>'
+            }, {
+                from: 'ALLIANCE_ID',
+                to: '<%= whelpjs.alliance_id %>'
+            }]
+        }
     },
 
     // Renames files for browser caching purposes
@@ -318,7 +353,6 @@ module.exports = function (grunt) {
         'coffee',
         'recess:dist',
         'copy:styles',
-        'imagemin',
         'svgmin',
         'htmlmin'
       ]
@@ -367,6 +401,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'replace:watch',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -398,6 +433,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
+    'replace:dist',
     'rev',
     'usemin'
   ]);

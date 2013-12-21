@@ -3,6 +3,8 @@
 angular.module('whelpjsApp')
   .controller 'MainCtrl', ($scope, socket) ->
     socket.forward('update', $scope);
+    $scope.alliance = ""
+    $scope.alliance_id = "0"
     $scope.killmails = []
     $scope.destroyed = 0.0
     $scope.lost = 0.0
