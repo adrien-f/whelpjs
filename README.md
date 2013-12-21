@@ -9,14 +9,16 @@ Data provided by [raylu/ykill](https://github.com/)
 
 You will need **node, grunt and bower** at the latest stable version.
 
+Edit the ```config.json``` file and fill in your alliance informations.
+
 ```bash
 git clone https://github.com/adrien-f/whelpjs.git
 cd whelpjs
 bower install
 npm install 
 grunt serve # this will launch the angular app
-coffee node_app/main.coffee # launch the node application querying the kills
+coffee whelpjs_node.coffee # launch the node application querying the kills
 ```   
 # TODO
 
-* Add a configuration file to select the alliance and the websocket server
+* Nothing at the moment
